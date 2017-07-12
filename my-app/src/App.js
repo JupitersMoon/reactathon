@@ -18,4 +18,7 @@ class App extends Component {
   }
 }
 
+
+// MODIFY FOR GIT
+
 export default App;
