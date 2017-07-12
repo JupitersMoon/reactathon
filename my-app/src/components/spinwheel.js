@@ -159,9 +159,13 @@ easeOut(t, b, c, d) {
   render(){
     return(
       <div>
-      <input type="button" value="spin" style={wheelStyle} id='spin' onClick={this.spin.bind(this)} />
-<canvas id="canvas" width="500" height="500"></canvas>
-</div>
+        <div>
+          <input type="button" value="SPIN" style={wheelStyle} id='spin' onClick={this.spin.bind(this)} />
+        </div>
+        <div>
+          <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+      </div>
     )
   }
 
