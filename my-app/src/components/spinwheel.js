@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import '../App.css'
 
 var active = ["hiking", "biking", "swimming", "waterfight", "climbing", "kayak", "tubing",  "sports"];
-var party = ["BBQ","summertime party", "porch party", "beach party", "kitty pool party", "margarita pool party"];
+var party = ["BBQ","summertime party", "porch party", "beach party", "kitty pool party", "margarita pool party", "roller skating", "skateboarding"];
 var indoor = ["TV", "movie", "video games", "slap a friend", "take a shot", "board games", "card games", "do nothing with A/C", "read a book"];
 var outdoor = ["sunbathing", "camping", "swimsuit twister", "amusement park", "star gazing", "smore's", "eat ice cream"];
-var roadTrip = ["scenic drive", "visit museums", "visit mom", "explore landmarks", "go to hot springs"];
+var roadTrip = ["scenic drive", "visit museums", "visit mom", "explore landmarks", "go to hot springs", "roadside attractions"];
 
 var options = active;
 
