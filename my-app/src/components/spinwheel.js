@@ -53,10 +53,8 @@ export default class SpinWheel extends Component {
   }
 
   drawRouletteWheel() {
-    console.log('drawRouletteWheel', Date.now());
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
-    console.log('if canvas.getContext');
     outsideRadius = 200;
     textRadius = 160;
     insideRadius = 125;
@@ -110,33 +108,22 @@ export default class SpinWheel extends Component {
 }
 
 spin() {
-  // change these to be set in state
-  // let spinAngleStart = Math.random() * 10 + 10;
-  // let spinTime = 0;
-  // let spinTimeTotal = Math.random() * 3 + 4 * 1000;
-  console.log('spin called', Date.now());
-  this.setState({spinTime: this.state.spinTimeTotal - this.state.spinTime})
-  console.log('spinTime', this.state.spinTime);
   this.rotateWheel();
 }
 
 rotateWheel() {
   this.setState({spinTime: this.state.spinTime += 30})
-  console.log(this.state.spinTime, Date.now());
   if(this.state.spinTime >= this.state.spinTimeTotal) {
     this.stopRotateWheel();
     return;
   }
   var spinAngle = this.state.spinAngleStart - this.easeOut(this.state.spinTime, 0, this.state.spinAngleStart, this.state.spinTimeTotal);
-  console.log('spingAngle', spinAngle);
   startAngle += (spinAngle * Math.PI / 180);
-  console.log('startAngle', startAngle);
   this.drawRouletteWheel();
   spinTimeout = setTimeout(() => this.rotateWheel(), 30);
 }
 
 stopRotateWheel() {
-  console.log('stopRotateWheel', Date.now());
   clearTimeout(spinTimeout);
   var degrees = startAngle * 180 / Math.PI + 90;
   var arcd = arc * 180 / Math.PI;
@@ -146,10 +133,10 @@ stopRotateWheel() {
   var text = options[index]
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
+  this.setState({spinTime: 0})
 }
 
 easeOut(t, b, c, d) {
-  console.log('easeOut called', arguments, Date.now());
   var ts = (t/=d)*t;
   var tc = ts*t;
   return b+c*(tc + -3*ts + 3*t);
@@ -159,13 +146,9 @@ easeOut(t, b, c, d) {
   render(){
     return(
       <div>
-        <div>
-          <input type="button" value="SPIN" style={wheelStyle} id='spin' onClick={this.spin.bind(this)} />
-        </div>
-        <div>
-          <canvas id="canvas" width="500" height="500"></canvas>
-        </div>
-      </div>
+      <input type="button" value="spin" style={wheelStyle} id='spin' onClick={this.spin.bind(this)} />
+<canvas id="canvas" width="500" height="500"></canvas>
+</div>
     )
   }
 
