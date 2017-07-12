@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import '../App.css'
 
-var options = ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99", "win"];
+var active = ["hiking", "biking", "swimming", "waterfight", "climbing", "kayak", "tubing",  "sports"];
+var party = ["BBQ","summertime party", "porch party", "beach party", "kitty pool party", "margarita pool party"];
+var indoor = ["TV", "movie", "video games", "slap a friend", "take a shot", "board games", "card games", "do nothing with A/C", "read a book"];
+var outdoor = ["sunbathing", "camping", "swimsuit twister", "amusement park", "star gazing", "smore's", "eat ice cream"];
+var roadTrip = ["scenic drive", "visit museums", "visit mom", "explore landmarks", "go to hot springs"];
+
+var options = active;
+
+
+
 
 var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
@@ -26,7 +35,8 @@ export default class SpinWheel extends Component {
     this.state = {
       spinAngleStart: Math.random() * 10 + 10,
       spinTime: 0,
-      spinTimeTotal: Math.random() * 3 + 4 * 1000
+      spinTimeTotal: Math.random() * 3 + 4 * 1000,
+      selected: "active"
     }
   }
 
@@ -142,10 +152,52 @@ easeOut(t, b, c, d) {
   return b+c*(tc + -3*ts + 3*t);
 }
 
+handleChange(changeEvent){
+  this.setState({
+    selected: changeEvent.target.value
+  })
+
+  switch(true) {
+    case this.state.selected === 'active':
+    options = active;
+    break;
+    case this.state.selected === 'outdoor':
+    options = outdoor;
+    break;
+    case this.state.selected === 'indoor':
+    options = indoor;
+    break;
+    case this.state.selected === 'party':
+    options = party;
+    break;
+    case this.state.selected === 'roadTrip':
+    options = roadTrip;
+    break;
+    default:
+    options = active;
+  }
+
+  this.drawRouletteWheel()
+
+}
+
+
 
   render(){
     return(
       <div>
+      <form>
+      <input type="radio" name="category" value="active" id="active" checked={this.state.selected==="active"} onChange={this.handleChange.bind(this)} /><label for="active"> Active </label>
+
+      <input type="radio" name="category" value="party" id="party" checked={this.state.selected==="party"} onChange={this.handleChange.bind(this)} /><label for="active"> Party </label>
+
+      <input type="radio" name="category" value="indoor" id="indoor" checked={this.state.selected==="indoor"} onChange={this.handleChange.bind(this)} /><label for="active"> Indoor </label>
+
+      <input type="radio" name="category" value="outdoor" id="outdoor" checked={this.state.selected==="outdoor"} onChange={this.handleChange.bind(this)} /><label for="active"> Outdoor </label>
+
+      <input type="radio" name="category" value="roadTrip" id="roadTrip" checked={this.state.selected==="roadTrip"} onChange={this.handleChange.bind(this)} /><label for="active"> RoadTrip </label>
+
+    </form>
       <input type="button" value="spin" style={wheelStyle} id='spin' onClick={this.spin.bind(this)} />
 <canvas id="canvas" width="500" height="500"></canvas>
 </div>
