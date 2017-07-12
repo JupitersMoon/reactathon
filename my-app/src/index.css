@@ -1,13 +1,24 @@
 body {
-  background-color: rgb(255, 226, 175);
+  background-image: url('./background.jpg');
+  background-size: cover;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-h1 {
+h1, input {
   color: white;
-  text-shadow: black 2px 2px 10px; 
+  text-shadow: black 2px 2px 10px;
+  text-align: center;
+  font-family: 'Gochi Hand', cursive;
+}
+
+input {font-size: 40px;
+  background-color: skyblue;
+  border-radius: 30px;
+  box-shadow: black 5px 5px 20px;
+  width: 200px;
+  height: 50px;
   text-align: center;
   font-family: 'Gochi Hand', cursive;
 }
