@@ -23,6 +23,7 @@ input {
   height: 50px;
   text-align: center;
   font-family: 'Gochi Hand', cursive;
+  z-index: 10;
 }
 
 canvas {
