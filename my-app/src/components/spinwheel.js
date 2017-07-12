@@ -115,8 +115,8 @@ spin() {
   // let spinTime = 0;
   // let spinTimeTotal = Math.random() * 3 + 4 * 1000;
   console.log('spin called', Date.now());
-  this.setState({spinTime: 0})
-  console.log(this.state.spinTime);
+  this.setState({spinTime: this.state.spinTimeTotal - this.state.spinTime})
+  console.log('spinTime', this.state.spinTime);
   this.rotateWheel();
 }
 
