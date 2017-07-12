@@ -115,6 +115,8 @@ spin() {
   // let spinTime = 0;
   // let spinTimeTotal = Math.random() * 3 + 4 * 1000;
   console.log('spin called', Date.now());
+  this.setState({spinTime: 0})
+  console.log(this.state.spinTime);
   this.rotateWheel();
 }
 
@@ -126,14 +128,16 @@ rotateWheel() {
     return;
   }
   var spinAngle = this.state.spinAngleStart - this.easeOut(this.state.spinTime, 0, this.state.spinAngleStart, this.state.spinTimeTotal);
+  console.log('spingAngle', spinAngle);
   startAngle += (spinAngle * Math.PI / 180);
+  console.log('startAngle', startAngle);
   this.drawRouletteWheel();
-  spinTimeout = window.setTimeout(this.rotateWheel(), 3000);
+  spinTimeout = setTimeout(() => this.rotateWheel(), 30);
 }
 
 stopRotateWheel() {
   console.log('stopRotateWheel', Date.now());
-  window.clearTimeout(window.spinTimeout);
+  clearTimeout(spinTimeout);
   var degrees = startAngle * 180 / Math.PI + 90;
   var arcd = arc * 180 / Math.PI;
   var index = Math.floor((360 - degrees % 360) / arcd);
@@ -145,6 +149,7 @@ stopRotateWheel() {
 }
 
 easeOut(t, b, c, d) {
+  console.log('easeOut called', arguments, Date.now());
   var ts = (t/=d)*t;
   var tc = ts*t;
   return b+c*(tc + -3*ts + 3*t);
@@ -167,5 +172,9 @@ easeOut(t, b, c, d) {
 }
 
 const wheelStyle = {
-  float: 'left'
+  float: 'left',
+  position: 'absolute',
+
+
+
 }
